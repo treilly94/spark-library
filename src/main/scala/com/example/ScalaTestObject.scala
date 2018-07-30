@@ -1,5 +1,7 @@
 package com.example
 
+import org.apache.spark.sql.SparkSession
+
 object ScalaTestObject {
 
   protected def maths(val1: Int, val2: Int): Int = {
@@ -11,6 +13,14 @@ object ScalaTestObject {
   }
 
   def main(args: Array[String]): Unit = {
-    print(method())
+    val spark = SparkSession
+      .builder()
+      .master("local")
+      .getOrCreate()
+
+    spark.sparkContext.setLogLevel("ERROR")
+
+    println(method())
+    println(spark.version)
   }
 }
