@@ -1,0 +1,14 @@
+language: scala
+jdk: oraclejdk8
+scala:
+- 2.11.12
+
+jobs:
+  include:
+  - stage: compile
+    script: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+
+  - stage: test
+    script: mvn test -B
+
+  - stage: deploy
