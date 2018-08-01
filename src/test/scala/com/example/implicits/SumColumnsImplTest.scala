@@ -11,10 +11,10 @@ class SumColumnsImplTest {
 
   @Test
   def testSumColumns() {
-    val input: DataFrame = spark.read.json("src/test/resources/input/sum_columns.json")
+    val input: DataFrame = spark.read.json("./src/test/resources/input/sum_columns.json")
     println("Input")
     input.show()
-    val expected: DataFrame = spark.read.json("src/test/resources/expected/sum_columns.json")
+    val expected: DataFrame = spark.read.json("./src/test/resources/expected/sum_columns.json")
     println("Expected")
     expected.show()
     val output: DataFrame = input.sumColumns("col1", "col2", "sum")
