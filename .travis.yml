@@ -6,8 +6,11 @@ jdk:
 
 jobs:
   include:
-  - stage: test
-    script: ./scripts/test.sh
+    - stage: scala test
+      script: ./scripts/scala_test.sh
 
-  - stage: deploy
-    script: ./scripts/deploy.sh
+    - stage: scala deploy
+      script: ./scripts/scala_deploy.sh
+
+    - stage: python test
+      script: ./scripts/python_test.sh
