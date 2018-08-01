@@ -1,27 +1,29 @@
 matrix:
   include:
-  - language: scala
-    scala:
-    - 2.11.12
-    jdk: oraclejdk8
-    jobs:
-      include:
-      - stage: test
-        script: ./scripts/scala_test.sh
+    - language: scala
+      scala:
+        - 2.11.12
+      jdk: oraclejdk8
+      jobs:
+        include:
+          - stage: test
+            script: ./scripts/scala_test.sh
 
-      - stage: deploy
-        script: ./scripts/scala_deploy.sh
+          - stage: deploy
+            script: ./scripts/scala_deploy.sh
 
-  - language: python
-    python:
-    - 3.6
-    jobs:
-      include:
-      - stage: test
-        script: ./scripts/python_test.sh
+    - language: python
+      python:
+        - 3.6
+      install:
+        - pip install -r ./python/requirements.txt
+      jobs:
+        include:
+          - stage: test
+            script: ./scripts/python_test.sh
 
-      - stage: deploy
-        script: ./scripts/python_deploy.sh
+          - stage: deploy
+            script: ./scripts/python_deploy.sh
 
 
 notifications:
