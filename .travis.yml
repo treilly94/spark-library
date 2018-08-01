@@ -1,8 +1,9 @@
 language: scala
 scala:
-- 2.11.12
+  - 2.11.12
 jdk:
-- oraclejdk8
+  - oraclejdk8
+  - openjdk8
 
 jobs:
   include:
