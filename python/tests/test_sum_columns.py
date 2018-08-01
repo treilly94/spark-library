@@ -9,16 +9,16 @@ class TestSum_columns(TestCase):
 
     def test_sum_columns(self):
         spark = SparkSession.builder.getOrCreate()
-        #spark.sparkContext.setLogLevel("ERROR")
+        spark.sparkContext.setLogLevel("ERROR")
 
-        # input = spark.read.json("src/test/resources/input/sum_columns.json")
-        # print("Input")
-        # input.show()
-        # expected = spark.read.json("src/test/resources/expected/sum_columns.json")
-        # print("Expected")
-        # expected.show()
-        # output = sum_columns(input, "col1", "col2", "sum")
-        # print("Output")
-        # output.show()
+        input = spark.read.json("src/test/resources/input/sum_columns.json")
+        print("Input")
+        input.show()
+        expected = spark.read.json("src/test/resources/expected/sum_columns.json")
+        print("Expected")
+        expected.show()
+        output = sum_columns(input, "col1", "col2", "sum")
+        print("Output")
+        output.show()
 
-        self.assertEqual()
+        self.assertEqual(expected.collect, output.collect)
