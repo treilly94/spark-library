@@ -3,7 +3,9 @@ scala:
 jdk:
   - oraclejdk8
 python:
-  - 3.6
+  - "3.6"
+install:
+  - pip install -r ./python/requirements.txt
 
 jobs:
   include:
@@ -11,9 +13,6 @@ jobs:
       script: ./scripts/scala_test.sh
     - stage: scala deploy
       script: ./scripts/scala_deploy.sh
-    - stage: python dependencies
-      install:
-        - pip install -r ./python/requirements.txt
     - stage: python test
       script: ./scripts/python_test.sh
     - stage: python deploy
