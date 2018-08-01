@@ -10,7 +10,7 @@ class SumColumnsTest {
   spark.sparkContext.setLogLevel("ERROR")
 
   @Test
-  def testSumColumns() {
+  def testSumColumns(): Unit = {
     val input: DataFrame = spark.read.json("src/test/resources/input/sum_columns.json")
     println("Input")
     input.show()
@@ -22,6 +22,11 @@ class SumColumnsTest {
     output.show()
 
     assert(output.collectAsList() == expected.collectAsList())
+  }
+
+  @Test
+  def fails(): Unit = {
+    assert(2 == 1)
   }
 
 }
