@@ -4,26 +4,20 @@ matrix:
       scala:
         - 2.11.12
       jdk: oraclejdk8
-      jobs:
-        include:
-          - stage: test
-            script: ./scripts/scala_test.sh
-
-          - stage: deploy
-            script: ./scripts/scala_deploy.sh
+      script:
+        - ./scripts/scala_test.sh
+      after_success:
+        - ./scripts/scala_deploy.sh
 
     - language: python
       python:
         - 3.6
       install:
         - pip install -r ./python/requirements.txt
-      jobs:
-        include:
-          - stage: test
-            script: ./scripts/python_test.sh
-
-          - stage: deploy
-            script: ./scripts/python_deploy.sh
+      script:
+        - ./scripts/python_test.sh
+      after_success:
+        - ./scripts/python_deploy.sh
 
 
 notifications:
