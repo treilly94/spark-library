@@ -10,14 +10,14 @@ install:
 
 jobs:
   include:
-    - stage: scala test
+    - stage: scala
       script: ./scripts/scala_test.sh
-    - stage: scala deploy
-      script: ./scripts/scala_deploy.sh
-    - stage: python test
+      after_success:
+        - ./scripts/scala_deploy.sh
+    - stage: python
       script: ./scripts/python_test.sh
-    - stage: python deploy
-      script: ./scripts/python_deploy.sh
+      after_success:
+        - ./scripts/python_deploy.sh
 
 notifications:
   email: false
