@@ -24,9 +24,4 @@ class SumColumnsTest {
     assert(output.collectAsList() == expected.collectAsList())
   }
 
-  @Test
-  def fails(): Unit = {
-    assert(2 == 1)
-  }
-
 }
