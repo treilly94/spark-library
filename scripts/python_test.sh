@@ -1,2 +1,2 @@
-cd python
+cd ../python
 python -m unittest
