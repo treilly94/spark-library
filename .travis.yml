@@ -7,7 +7,7 @@ jdk:
 jobs:
   include:
   - stage: test
-    script: mvn test
+    script: ./scripts/test.sh
 
   - stage: deploy
     script: echo "Deploy"
