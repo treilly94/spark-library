@@ -1,2 +1,1 @@
-mvn compile
 mvn test
