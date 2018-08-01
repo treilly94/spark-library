@@ -10,4 +10,4 @@ jobs:
     script: ./scripts/test.sh
 
   - stage: deploy
-    script: echo "Deploy"
+    script: ./scripts/deploy.sh
