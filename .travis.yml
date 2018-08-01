@@ -4,13 +4,20 @@ jdk:
   - oraclejdk8
 python:
   - 3.6
-install:
-  - pip3 install -r ./python/requirements.txt
-script:
-  - ./scripts/scala_test.sh
-  - ./scripts/python_test.sh
-after_success:
-  - ./scripts/scala_deploy.sh
-  - ./scripts/python_deploy.sh
+
+jobs:
+  include:
+    - stage: scala test
+      script: ./scripts/scala_test.sh
+    - stage: scala deploy
+      script: ./scripts/scala_deploy.sh
+    - stage: python dependencies
+      install:
+        - pip install -r ./python/requirements.txt
+    - stage: python test
+      script: ./scripts/python_test.sh
+    - stage: python deploy
+      script: ./scripts/python_deploy.sh
+
 notifications:
   email: false
