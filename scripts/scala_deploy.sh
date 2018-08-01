@@ -1,1 +1,1 @@
-echo "deploy!!!"
+echo "Scala deploy!!!"
