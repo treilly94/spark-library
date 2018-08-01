@@ -1,12 +1,13 @@
 language: scala
-jdk: oraclejdk8
 scala:
 - 2.11.12
+jdk:
+- oraclejdk8
 
 jobs:
   include:
   - stage: test
-    script: mvn test -B
+    script: mvn test
 
   - stage: deploy
     script: echo "Deploy"
