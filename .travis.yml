@@ -1,9 +1,10 @@
+language: python
 scala:
   - 2.11.12
 jdk:
   - oraclejdk8
 python:
-  - "3.6"
+  - 3.6
 install:
   - pip install -r ./python/requirements.txt
 
