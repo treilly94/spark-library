@@ -1,24 +1,17 @@
-matrix:
-  include:
-    - language: scala
-      scala:
-        - 2.11.12
-      jdk: oraclejdk8
-      script:
-        - ./scripts/scala_test.sh
-      after_success:
-        - ./scripts/scala_deploy.sh
-
-    - language: python
-      python:
-        - 3.6
-      install:
-        - pip install -r ./python/requirements.txt
-      script:
-        - ./scripts/python_test.sh
-      after_success:
-        - ./scripts/python_deploy.sh
-
-
+dist: trusty
+scala:
+  - 2.11.12
+jdk:
+  - oraclejdk8
+python:
+  - 3.6
+install:
+  - pip install -r ./python/requirements.txt
+script:
+  - ./scripts/scala_test.sh
+  - ./scripts/python_test.sh
+after_success:
+  - ./scripts/scala_deploy.sh
+  - ./scripts/python_deploy.sh
 notifications:
   email: false
