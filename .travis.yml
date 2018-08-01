@@ -5,7 +5,7 @@ jdk:
 python:
   - 3.6
 install:
-  - pip install -r ./python/requirements.txt
+  - pip3 install -r ./python/requirements.txt
 script:
   - ./scripts/scala_test.sh
   - ./scripts/python_test.sh
