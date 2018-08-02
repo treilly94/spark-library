@@ -1,1 +1,1 @@
-echo "Scala deploy!!!"
+mvn package
