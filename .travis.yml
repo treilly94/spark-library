@@ -8,6 +8,8 @@ python:
 install:
   - mvn compile
   - pip install -r ./python/requirements.txt
+env:
+  - GIT_TAG = mvn help:evaluate -Dexpression=project.version | grep -e '^[^\[]'
 
 jobs:
   include:
@@ -20,11 +22,22 @@ jobs:
         - ./scripts/show_target.sh
         - ./scripts/python_test.sh
 
+before_deploy:
+  - git config --local user.name ${GIT_USR}
+  - git config --local user.email ${GIT_EMAIL}
+  - git tag ${GIT_TAG}
+
 deploy:
   provider: script
+  api_key: ${GITHUB_OAUTH}
   script: ./scripts/final_deploy.sh
+  skip_cleanup: true
+  file:
+    - "target/*.jar"
+    - "python/dist/*.tar.gz"
   on:
-    branch: master
+    branch: feature/deploy
+    tags: true
 
 notifications:
   email: false
