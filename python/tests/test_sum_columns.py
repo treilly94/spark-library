@@ -8,7 +8,11 @@ from methods.sum_columns import sum_columns
 class TestSum_columns(TestCase):
 
     def test_sum_columns(self):
-        spark = SparkSession.builder.getOrCreate()
+        spark = SparkSession.builder\
+            .master("local[*]")\
+            .config("spark.jars", "../target/spark-library-1.0-SNAPSHOT.jar")\
+            .getOrCreate()
+
         spark.sparkContext.setLogLevel("ERROR")
 
         input = spark.read.json("../src/test/resources/input/sum_columns.json")
