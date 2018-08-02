@@ -9,12 +9,22 @@ install:
   - mvn dependency:resolve
   - pip install -r ./python/requirements.txt
 
-script:
-  - ./scripts/scala_test.sh
-  - ./scripts/scala_deploy.sh
-  - ./scripts/show_target.sh
-  - ./scripts/python_test.sh
-  - ./scripts/python_deploy.sh
+jobs:
+  include:
+    - stage: scala
+      script:
+        - ./scripts/scala_test.sh
+    - stage: python
+      script:
+        - ./scripts/scala_deploy.sh
+        - ./scripts/show_target.sh
+        - ./scripts/python_test.sh
+
+deploy:
+  provider: script
+  script: ./scripts/final_deploy.sh
+  on:
+    branch: master
 
 notifications:
   email: false
