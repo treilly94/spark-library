@@ -6,7 +6,7 @@ jdk:
 python:
   - 3.6
 install:
-  - mvn compile
+  - mvn dependency:resolve
   - pip install -r ./python/requirements.txt
 
 script:
