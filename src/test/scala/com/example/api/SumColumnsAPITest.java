@@ -1,6 +1,5 @@
 package com.example.api;
 
-import com.example.SumColumns;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -22,7 +21,7 @@ public class SumColumnsAPITest {
         System.out.println("Expected");
         expected.show();
 
-        Dataset<Row> output = SumColumns.sumColumns(input, "col1", "col2", "sum");
+        Dataset<Row> output = SumColumnsAPI.sumColumns(input, "col1", "col2", "sum");
         System.out.println("Output");
         output.show();
 
