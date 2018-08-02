@@ -6,21 +6,14 @@ jdk:
 python:
   - 3.6
 install:
-  - mvn compile
   - pip install -r ./python/requirements.txt
 
-jobs:
-  include:
-    - stage: scala
-      script: ./scripts/scala_test.sh
-      after_success:
-        - ./scripts/scala_deploy.sh
-    - stage: python
-      script:
-        - ./scripts/show_target.sh
-        - ./scripts/python_test.sh
-      after_success:
-        - ./scripts/python_deploy.sh
+script:
+  - ./scripts/scala_test.sh
+  - ./scripts/scala_deploy.sh
+  - ./scripts/show_target.sh
+  - ./scripts/python_test.sh
+  - ./scripts/python_deploy.sh
 
 notifications:
   email: false
