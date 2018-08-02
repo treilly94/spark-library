@@ -25,4 +25,4 @@ class TestSum_columns(TestCase):
         print("Output")
         output.show()
 
-        self.assertEqual(expected.collect, output.collect)
+        self.assertEqual(expected.collect(), output.collect())
