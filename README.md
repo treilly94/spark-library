@@ -32,8 +32,9 @@ df.sumColumns("col1", "col2", "sum")
 This can make calling the methods and stringing multiple methods together cleaner.
 
 #### Java API
-The core implementation is wrapped in a java api to allow the method to be used in java. The api is also required 
-for the python wrapper. These APIs can be found in the *com.example.api* package.  
+The core implementation is wrapped in a java api to allow the method to be used in java. It does this by converting any 
+java parameters into scala ones. The api is also required for the python wrapper. 
+These APIs can be found in the *com.example.api* package.  
 They can be implemented as shown in the snippet below: 
 ```java
 import org.apache.spark.sql.Dataset;
@@ -43,5 +44,18 @@ import com.example.api.SumColumnsAPI;
 Dataset<Row> df = // The dataframe the method will be applied to 
 
 SumColumns.sumColumns(df, "col1", "col2", "sum");
+
+```
+
+#### Python wrapper
+The python wrappers use py4j to pass the arguments into the java api, this then converts those arguments and passes 
+them to the core scala implementation. The python files can be found in the python directory.  
+They can be implemented as shown in the snippet below: 
+```python
+from methods.sum_columns import sum_columns
+
+df = # The dataframe the method will be applied to 
+
+sum_columns(df, "col1", "col2", "sum")
 
 ```
