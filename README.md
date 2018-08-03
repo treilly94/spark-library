@@ -59,3 +59,16 @@ df = # The dataframe the method will be applied to
 sum_columns(df, "col1", "col2", "sum")
 
 ```
+
+## Docker 
+The dockerfile will create an environment appropriate for running this project in.
+#### Building the image
+The image can be built by running the following command in the root of this project
+```
+docker build -t spark-library-environment .
+```
+The -t argument provides a name for the docker image. This can be whatever you like.  
+The . at the end of the command is required. It specifies that the docker file is in your cwd. If the dockerfile is not 
+in the cwd this can be replaced with a filepath
+
+Once built 
