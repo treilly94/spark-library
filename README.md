@@ -71,4 +71,5 @@ The -t argument provides a name for the docker image. This can be whatever you l
 The . at the end of the command is required. It specifies that the docker file is in your cwd. If the dockerfile is not 
 in the cwd this can be replaced with a filepath
 
-Once built 
+#### Running the image
+Once built the following command can be called to create a container with an interactive shell
