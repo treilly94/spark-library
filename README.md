@@ -72,4 +72,14 @@ The . at the end of the command is required. It specifies that the docker file i
 in the cwd this can be replaced with a filepath
 
 #### Running the image
-Once built the following command can be called to create a container with an interactive shell
+Once built the following command can be called to create a container 
+```
+docker run -it -d --rm --name spark-library-test spark-library-environment
+```
+You can then create an interactive shell using the below command
+```
+docker exec -it spark-library-test bash
+```
+
+> Note: The code in this image will be the code at the time that the image was built. Changes to the code will not be 
+> synced between the container and host. If this is needed you could add volume mapping to the run command.
