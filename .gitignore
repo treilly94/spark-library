@@ -2,3 +2,9 @@
 *.log
 .idea/
 *.iml
+.Rproj.user
+.Rhistory
+.RData
+R/man/
+R/NAMESPACE
+R/metastore_db
