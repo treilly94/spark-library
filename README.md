@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/treilly94/spark-library.svg?branch=master)](https://travis-ci.org/treilly94/spark-library)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Slack Status](https://img.shields.io/badge/slack-online-purple.svg)](https://spark-library.slack.com/)
 # spark-library
 This library contains methods written in spark-sql that can be imported and run in scala, java, and python.
 
