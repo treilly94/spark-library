@@ -1,11 +1,16 @@
-<<<<<<< HEAD
-#'
+
+#' Title
 #'
 #' @param sc
 #' @param dataframe
 #' @param column_1
 #' @param column_2
 #' @param new_column
+#'
+#' @return
+#' @export
+#'
+#' @examples
 
 sum_columns1 <- function(sc, dataframe, column_1, column_2, new_column) {
 
@@ -32,6 +37,18 @@ sum_columns1 <- function(sc, dataframe, column_1, column_2, new_column) {
            col2=column_2,
            newCol=new_column)
 }
+
+#' Title
+#'
+#' @param x
+#' @param col1
+#' @param col2
+#' @param newCol
+#'
+#' @return
+#' @export
+#'
+#' @examples
 
 sum_columns <- function(x, col1, col2, newCol) {
   # Turn the dataset into a spark dataframe
