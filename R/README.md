@@ -4,6 +4,7 @@ Information on creating wrappers for spark functions can be found [here](https:/
 #### Installing dependencies
 The following dependencies are required:  
 * sparklyr - Spark
+* devtools - Development of packages
 * testthat - Testing
 
 They can be installed with the below code snippet:
