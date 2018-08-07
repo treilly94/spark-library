@@ -6,6 +6,7 @@ The following dependencies are required:
 * sparklyr - Spark
 * devtools - Development of packages
 * testthat - Testing
+* roxygen2
 
 They can be installed with the below code snippet:
 
