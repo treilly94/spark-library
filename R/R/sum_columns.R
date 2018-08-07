@@ -12,7 +12,7 @@
 #'
 #' @examples
 
-sum_columns1 <- function(sc, dataframe, column_1, column_2, new_column) {
+sum_columns <- function(sc, dataframe, column_1, column_2, new_column) {
 
 
   # Checks to see if there is spark connection
@@ -26,39 +26,16 @@ sum_columns1 <- function(sc, dataframe, column_1, column_2, new_column) {
 
 
 
-  # Here we invoke the class and function within the object as the method
-  # Then we invoke the method inside the class, with its parameters.
+  # Here we invoke the function within the object as the method
+  # We also pass the parameters into the method
   # The types need to match in order to get the correct signutre otherwise you will get a no such method found error
 
-  invoke_static(sc=sc, class="com.example", method="SumColumns", df=dataframe) %>%
-    invoke(method = "sumColumns",
-           df=dataframe,
-           col1= column_1,
-           col2=column_2,
-           newCol=new_column)
-}
-
-#' Title
-#'
-#' @param x
-#' @param col1
-#' @param col2
-#' @param newCol
-#'
-#' @return
-#' @export
-#'
-#' @examples
-
-sum_columns <- function(x, col1, col2, newCol) {
-  # Turn the dataset into a spark dataframe
-  df <- spark_dataframe(x)
-  # get the underlying connection so we can create new objects
-  sc <- spark_connection(df)
-
-  output <- sc %>%
-    invoke_new("com.example.SumColumns") %>%
-    invoke("sumColumns", df, col1, col2, newCol)
-
-  output
+  invoke_static(sc=sc,
+                class="com.example.SumColumns",
+                method="sumColumns",
+                df=dataframe,
+                col1= column_1,
+                col2=column_2,
+                newCol=new_column
+                )
 }
