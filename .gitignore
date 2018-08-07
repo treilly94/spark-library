@@ -1,10 +1,19 @@
+# Scala
 *.class
 *.log
-.idea/
-*.iml
+
+# R
 .Rproj.user
 .Rhistory
 .RData
 R/man/
 R/NAMESPACE
 R/metastore_db
+target/
+
+# Python
+**/venv/
+
+# IDE
+.idea/
+*.iml
