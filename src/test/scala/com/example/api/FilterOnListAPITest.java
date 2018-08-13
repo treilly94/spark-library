@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+import static org.junit.Assert.assertEquals;
+
 public class FilterOnListAPITest {
     private SparkSession spark = SparkSession.builder().master("local").getOrCreate();
 
@@ -28,5 +30,7 @@ public class FilterOnListAPITest {
         Dataset<Row> output = FilterOnListAPI.filterOnList(input, "targetCol", values);
         System.out.println("Output");
         output.show();
+
+        assertEquals(expected.collectAsList(), output.collectAsList());
     }
 }
