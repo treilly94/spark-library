@@ -1,0 +1,6 @@
+{"col1": "cheese", "col2":2, "targetCol": 30},
+{"col1": "ham", "col2":9, "targetCol": 67},
+{"col1": "crackers", "col2":5, "targetCol": 1},
+{"col1": "bicuits", "col2":4, "targetCol": 18},
+{"col1": "chocolate", "col2":4, "targetCol": 2},
+{"col1": "apples", "col2":8, "targetCol": 5}
