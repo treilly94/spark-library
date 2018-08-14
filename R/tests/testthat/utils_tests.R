@@ -35,12 +35,12 @@ spark_connection < function(){
 #' @param name A String that is the name of the data coming in, defaults to input_data
 #'
 #' @return Returns a \code{jobj}
-#' @export
 #'
 #' @examples
 #' \dontrun{
-#' input_data <- read_in_data("", sc, "input_data")
+#' input_data <- read_in_data(".../resources/inputs/input_data.json", sc, "input_data")
 #' }
+#' @export
 read_in_data <- function(file_path, sc, name= "input_data"){
   # If statement to check the ending of the file path to see if its json or csv
   if(endsWith(file_path, "json")){
@@ -59,12 +59,58 @@ read_in_data <- function(file_path, sc, name= "input_data"){
   }
 }
 
-
-calculating_differences <- function(data1, data2){
+comparing_data <- function(actual, expected){
+  tryCatch({
+    expect_idential(actual,expected)
+  },
+  error = function(e){
+    diff <- calculating_differences(actual, expected)
+    writing_assertion_output(actual, expected, diff)
+  }
+  )
 
 }
 
+calculating_differences <- function(data1, data2){
+  NULL
+}
 
-writing_output <- function(data1, data2){
 
+#' Writing Assertion Error Output
+#'
+#' @param test_name A String of the name of the test being called
+#' @param actual A \code{jobj} which holds the data coming out of the function being tested
+#' @param expected A \code{jobj} which holds the expected data that should have come out of the function being tested
+#' @param differnces A \code{jobj} which holds the differences between the two dataset, defaults to Null
+#'
+#' @return
+#'
+#' @examples
+#' \dontrun{
+#'
+#' }
+#'
+#' @export
+writing_assertion_output <- function(test_name, actual, expected, differnces=NULL){
+  # Creating the temp file name
+  file_name <- tempfile(fileext = ".txt")
+  # Opening the file in order to write to it
+  file_num <- file(file_name, open="wt")
+
+  # Writing to the file
+  sink(file = file_name, append= FALSE)
+  cat(paste0("\n ", test_name))
+  cat(paste0("\n Actual Dataframe output\n"))
+  print(actual, n= Inf, width=Inf)
+  cat(paste0("\n Expected Dataframe\n"))
+  print(expected, n= Inf, width=Inf)
+  if(differnces.isNotNull){
+    cat(paste0("\n Differencet\n"))
+    print(differnces, n= Inf, width=Inf)
+  }
+
+  # Closing the file
+  close(file_num)
+  # Printing the file name so the tester knows where to look at the data
+  cat("\n The difference can be seen in ", file_name, "\n", sep="")
 }
