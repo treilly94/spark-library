@@ -1,29 +1,30 @@
 language: python
+
 cache:
+  packages: true
+  pip: true
   directories:
     - $HOME/.m2
-    - $HOME/.cache/pip
+
 scala:
   - 2.11.12
 jdk:
   - oraclejdk8
 python:
   - 3.6
-  
 R:
   - 3.4.1
-  cache: packages
+
 install:
   - mvn compile
   - pip install -r ./python/requirements.txt
-          
-     
 
 jobs:
   include:
     - stage: scala
       script:
         - ./scripts/scala_test.sh
+
     - stage: python
       script:
         - ./scripts/scala_deploy.sh
@@ -31,7 +32,9 @@ jobs:
         - ./scripts/python_test.sh
 
     - stage: R
-        - Rscript -e 'devtools::install();devtools::test()'
+      script:
+        - ./scripts/r_test.sh
+
 deploy:
   provider: script
   script: ./scripts/final_deploy.sh
