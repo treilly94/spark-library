@@ -1,4 +1,3 @@
-language: java
 jdk: oraclejdk8
 
 cache:
@@ -10,21 +9,24 @@ cache:
 jobs:
   include:
     - stage: scala
+      language: java
       scala:
         - 2.11.12
       script:
         - ./scripts/scala_test.sh
 
     - stage: python
+      language: python
       python:
         - 3.6
-      install: pip3 install -r ./python/requirements.txt
+      install: pip install -r ./python/requirements.txt
       script:
         - ./scripts/scala_deploy.sh
         - ./scripts/show_target.sh
         - ./scripts/python_test.sh
 
     - stage: R
+      language: r
       R:
         - 3.4.1
       script:
