@@ -9,6 +9,9 @@ jdk:
   - oraclejdk8
 python:
   - 3.6
+  
+R:
+  - 3.4.1
 install:
   - mvn compile
   - pip install -r ./python/requirements.txt
@@ -28,8 +31,6 @@ jobs:
 
     - stage: R
       script:
-        - ./scripts/scala_deploy.sh
-        - ./scripts/show_target.sh
         - ./scripts/r_test.sh
 deploy:
   provider: script
