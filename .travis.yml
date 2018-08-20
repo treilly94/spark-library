@@ -21,7 +21,7 @@ jobs:
         - 3.6
       install: pip install -r ./python/requirements.txt
       script:
-        - ./scripts/scala_deploy.sh
+        - ./scripts/scala_package.sh
         - ./scripts/show_target.sh
         - ./scripts/python_test.sh
 
@@ -30,7 +30,7 @@ jobs:
       R:
         - 3.4.1
       script:
-        - ./scripts/scala_deploy.sh
+        - ./scripts/scala_package.sh
         - ./scripts/show_target.sh
         - ./scripts/r_test.sh
 
