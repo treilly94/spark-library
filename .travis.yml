@@ -12,6 +12,7 @@ python:
   
 R:
   - 3.4.1
+  cache: packages
 install:
   - mvn compile
   - pip install -r ./python/requirements.txt
@@ -30,8 +31,7 @@ jobs:
         - ./scripts/python_test.sh
 
     - stage: R
-      script:
-        - ./scripts/r_test.sh
+        - Rscript -e 'devtools::install();devtools::test()'
 deploy:
   provider: script
   script: ./scripts/final_deploy.sh
