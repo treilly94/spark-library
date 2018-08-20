@@ -1,4 +1,3 @@
 cd ./R
-devtools::document()
-devtools::build()
-devtools::test()
+R CMD build .
+R CMD check sparkLibrary*.tar.gz
