@@ -18,7 +18,7 @@ jobs:
     - stage: python
       python:
         - 3.6
-      install: pip install -r ./python/requirements.txt
+      install: pip3 install -r ./python/requirements.txt
       script:
         - ./scripts/scala_deploy.sh
         - ./scripts/show_target.sh
