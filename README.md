@@ -41,11 +41,11 @@ They can be implemented as shown in the snippet below:
 ```java
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
-import com.example.api.SumColumnsAPI;
+import com.example.api.SumColumnsAPI.sumColumns;
 
 Dataset<Row> df = // The dataframe the method will be applied to 
 
-SumColumns.sumColumns(df, "col1", "col2", "sum");
+sumColumns(df, "col1", "col2", "sum");
 
 ```
 
