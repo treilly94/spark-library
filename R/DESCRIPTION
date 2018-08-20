@@ -3,6 +3,7 @@ Type: Package
 Title: Calls Scala methods from the spark-library package and turns then into R methods.
 Version: 0.1.0
 Author: See Github Collabs
+Maintainer: Joe Developer <Joe.Developer@some.domain.net>
 Description: This package is used for calling Scala methods from the spark-library package, turns them into R methods to allow them to be used within R.
 Depends:
       R (>= 3.4.1),
