@@ -1,4 +1,8 @@
 language: python
+cache:
+  directories:
+    - $HOME/.m2
+    - $HOME/.cache/pip
 scala:
   - 2.11.12
 jdk:
