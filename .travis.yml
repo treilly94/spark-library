@@ -33,7 +33,7 @@ jobs:
       r_packages:
         - sparklyr
         - dplyr
-
+      before_script: cd ..
       script:
         - ./scripts/scala_package.sh
         - ./scripts/show_target.sh
