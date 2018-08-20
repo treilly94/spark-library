@@ -29,6 +29,9 @@ jobs:
       language: r
       R:
         - 3.4.1
+      r_packages:
+        - sparklyr
+        - dplyr
       script:
         - ./scripts/scala_package.sh
         - ./scripts/show_target.sh
