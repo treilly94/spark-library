@@ -73,13 +73,14 @@ read_in_data <- function(file_path, sc, name= "input_data"){
   }
 }
 
-comparing_data <- function(actual, expected){
+comparing_data <- function(test_name, actual, expected){
+
   tryCatch({
     expect_idential(actual,expected)
   },
   error = function(e){
     diff <- calculating_differences(actual, expected)
-    writing_assertion_output(actual, expected, diff)
+    writing_assertion_output(test_name, actual, expected, diff)
   }
   )
 

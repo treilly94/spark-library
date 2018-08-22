@@ -2,8 +2,8 @@ context("Testing Sum Column Using BDD")
 
 sc <- test_spark_connection()
 
-describe(" ", {
-  it(" ", {
+describe("That two columns are taken in and summed", {
+  it("two integers columns", {
     input_data <- read_in_data(file.path(PROJHOME, "../resources/input/sum_columns.json"), sc, name= "sum_col_input_data")
 
     expected<- read_in_data(file.path(PROJHOME, "../resources/expected/sum_columns.json"), sc, name= "sum_col_expected_data") %>%
@@ -16,7 +16,7 @@ describe(" ", {
       dplyr::select() %>%
       dplyr::arrange()
 
-    comparing_data(actual_data, expected_data)
+    comparing_data("sumtest1", actual_data, expected_data)
 
     })
   })
