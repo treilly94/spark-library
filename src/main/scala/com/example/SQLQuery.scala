@@ -29,13 +29,13 @@ object SQLQuery {
       */
     def tableMatchWarning(string: String): Unit = {
 
-
       logger.warn("FROM clause argument '" + string.split(" ")(1)
                   + "' does not match given parameter name '" + name + ".'")
     }
 
     // Find "FROM [TABLE]" in query String, case insensitive.
-    fromClauseRegEx.findAllIn(query).foreach(string => if (string.toLowerCase != "from " + name.toLowerCase) tableMatchWarning(string))
+    fromClauseRegEx.findAllIn(query)
+                   .foreach(string => if (string.toLowerCase != "from " + name.toLowerCase) tableMatchWarning(string))
 
     // If temp view doesn't exist, create it. Else use existing table and log warning.
     try {df.createTempView(name)}
