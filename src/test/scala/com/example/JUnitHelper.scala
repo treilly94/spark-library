@@ -8,22 +8,26 @@ object JUnitHelper {
   var sparkSession: SparkSession = null
   val logger: Logger = LogManager.getRootLogger
 
-  def setup: Unit = {
+  def setup(): Unit = {
 
-    if (sparkSession == null) sparkSession = SparkSession.builder()
-                                                         .master("local")
-                                                         .appName("spark-library")
-                                                         .getOrCreate()
+    if (sparkSession == null) {
 
-    logger.info("BeforeClass: Created Spark session.")
-    sparkSession.sparkContext.setLogLevel("WARN")
+      sparkSession = SparkSession.builder()
+                                 .master("local")
+                                 .appName("spark-library")
+                                 .getOrCreate()
+
+      logger.info("BeforeClass: Created Spark session.")
+      sparkSession.sparkContext.setLogLevel("WARN")
+    }
   }
 
-  def teardown: Unit = {
+  def teardown(): Unit = {
 
     if (sparkSession != null) {
 
-      sparkSession.close
+      sparkSession.sparkContext.setLogLevel("INFO")
+      sparkSession.close()
       sparkSession = null
       logger.info("AfterClass: Closed Spark session.")
     }

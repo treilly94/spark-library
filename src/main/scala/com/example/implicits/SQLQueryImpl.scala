@@ -2,10 +2,11 @@ package com.example.implicits
 
 import com.example.SQLQuery
 import org.apache.spark.sql.DataFrame
+import org.apache.spark.sql.catalyst.analysis.TempTableAlreadyExistsException
 
 object SQLQueryImpl {
 
-  implicit class SQLQueryImpl(df: DataFrame) {
+  implicit class DataFrameImplMethods(df: DataFrame) {
 
     /** Ease of use method.
       *
@@ -18,6 +19,7 @@ object SQLQueryImpl {
       * @param query String - SQL query String
       * @return DataFrame
       */
+    @throws(classOf[TempTableAlreadyExistsException])
     def sqlQuery(name: String, query: String): DataFrame = SQLQuery.sqlQuery(df, name, query)
   }
 

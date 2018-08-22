@@ -18,6 +18,7 @@ object SQLQuery {
     * @param query String - SQL query String
     * @return DataFrame
     */
+  @throws(classOf[TempTableAlreadyExistsException])
   def sqlQuery(df: DataFrame, name: String, query: String): DataFrame = {
 
     val logger = LogManager.getRootLogger
@@ -37,9 +38,9 @@ object SQLQuery {
     fromClauseRegEx.findAllIn(query)
                    .foreach(string => if (string.toLowerCase != "from " + name.toLowerCase) tableMatchWarning(string))
 
-    // If temp view doesn't exist, create it. Else use existing table and log warning.
-    try {df.createTempView(name)}
-    catch {case ttaee: TempTableAlreadyExistsException => logger.warn(ttaee.message + ". Reading from existing view.")}
+    // Create a temporary view.
+    // Will raise a TempTableAlreadyExistsException if exists.
+    df.createTempView(name)
 
     // Execute query.
     df.sparkSession.sql(query)
