@@ -1,35 +1,30 @@
-tests_spark_connection < function(){
-  version <- Sys.getenv("SPARK_VERSION", unset="2.2.0")
+testthat_spark_connection < function(){
+  version <- Sys.getenv("SPARK_VERSION", unset = "2.2.0")
 
-  if(exists(".tests_livy_connection", envir = .GlobalEnv)){
+  if (exists(".testthat_livy_connection", envir = .GlobalEnv)) {
     spark_disconnect_all()
     Sys.sleep(3)
     livy_service_stop()
-    remove(".tests_livy_connection", envir = .GlobalEnv)
+    remove(".testthat_livy_connection", envir = .GlobalEnv)
   }
 
   spark_installed <- spark_installed_versions()
-  if(nrow(spark_installed[spark_installed$spark == version, ]) == 0){
+  if (nrow(spark_installed[spark_installed$spark == version, ]) == 0) {
     options(sparkinstall.verbose = TRUE)
     spark_install(version)
   }
 
   expect_gt(nrow(spark_installed_versions()), 0)
 
-
-  # Checking if a spark connection alaready exist
-  # intialsing the connected variable as FALSE, if a spark connection does already
-  # exist the if statement will change it to TRUE
-  connected = FALSE
-  if(exists(".tests_spark_connection", envir = .GlobalEnv)){
-    sc <- get(".tests_spark_connection", envir = .GlobalEnv)
+  # generate connection if none yet exists
+  connected <- FALSE
+  if (exists(".testthat_spark_connection", envir = .GlobalEnv)) {
+    sc <- get(".testthat_spark_connection", envir = .GlobalEnv)
     connected <- connection_is_open(sc)
   }
 
-  # If there isn't already a spark connection then one is created
-  if(!connected){
+  if (!connected) {
     config <- spark_config()
-    version <- Sys.getenv("SPARK_VERSION", uset="2.2.0")
 
     options(sparklyr.gateway.address = "127.0.0.1")
     options(sparklyr.sanitize.column.names.verbose = TRUE)
@@ -37,12 +32,13 @@ tests_spark_connection < function(){
     options(sparklyr.na.omit.verbose = TRUE)
     options(sparklyr.na.action.verbose = TRUE)
 
-    sc <- spark_connect(master = "local", version=version, config= config)
-    assign(".tests_spark_connection", sc, envir = .GlobalEnv)
+    setwd(tempdir())
+    sc <- spark_connect(master = "local", version = version, config = config)
+    assign(".testthat_spark_connection", sc, envir = .GlobalEnv)
   }
 
-  get(".tests_spark_connection", envir = .GlobalEnv)
-
+  # retrieve spark connection
+  get(".testthat_spark_connection", envir = .GlobalEnv)
 }
 
 
