@@ -1,12 +1,28 @@
-spark_connection < function(){
-  version
+tests_spark_connection < function(){
+  version <- Sys.getenv("SPARK_VERSION", unset="2.2.0")
+
+  if(exists(".tests_livy_connection", envir = .GlobalEnv)){
+    spark_disconnect_all()
+    Sys.sleep(3)
+    livy_service_stop()
+    remove(".tests_livy_connection", envir = .GlobalEnv)
+  }
+
+  spark_installed <- spark_installed_versions()
+  if(nrow(spark_installed[spark_installed$spark == version, ]) == 0){
+    options(sparkinstall.verbose = TRUE)
+    spark_install(version)
+  }
+
+  expect_gt(nrow(spark_installed_versions()), 0)
+
 
   # Checking if a spark connection alaready exist
   # intialsing the connected variable as FALSE, if a spark connection does already
   # exist the if statement will change it to TRUE
   connected = FALSE
-  if(exists(".spark_connection", envir = .GlobalEnv)){
-    sc <- get(".spark_connection", envir = .GlobalEnv)
+  if(exists(".tests_spark_connection", envir = .GlobalEnv)){
+    sc <- get(".tests_spark_connection", envir = .GlobalEnv)
     connected <- connection_is_open(sc)
   }
 
@@ -22,8 +38,10 @@ spark_connection < function(){
     options(sparklyr.na.action.verbose = TRUE)
 
     sc <- spark_connect(master = "local", version=version, config= config)
-    assign(".spark_connection", sc, envir = .GlobalEnv)
+    assign(".tests_spark_connection", sc, envir = .GlobalEnv)
   }
+
+  get(".tests_spark_connection", envir = .GlobalEnv)
 
 }
 
