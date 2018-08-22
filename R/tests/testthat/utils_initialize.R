@@ -1,11 +1,11 @@
-testthat_spark_connection < function(){
+test_spark_connection <- function(){
   version <- Sys.getenv("SPARK_VERSION", unset = "2.2.0")
 
-  if (exists(".testthat_livy_connection", envir = .GlobalEnv)) {
+  if (exists(".test_livy_connection", envir = .GlobalEnv)) {
     spark_disconnect_all()
     Sys.sleep(3)
     livy_service_stop()
-    remove(".testthat_livy_connection", envir = .GlobalEnv)
+    remove(".test_livy_connection", envir = .GlobalEnv)
   }
 
   spark_installed <- spark_installed_versions()
@@ -18,8 +18,8 @@ testthat_spark_connection < function(){
 
   # generate connection if none yet exists
   connected <- FALSE
-  if (exists(".testthat_spark_connection", envir = .GlobalEnv)) {
-    sc <- get(".testthat_spark_connection", envir = .GlobalEnv)
+  if (exists(".test_spark_connection", envir = .GlobalEnv)) {
+    sc <- get(".test_spark_connection", envir = .GlobalEnv)
     connected <- connection_is_open(sc)
   }
 
@@ -34,11 +34,11 @@ testthat_spark_connection < function(){
 
     setwd(tempdir())
     sc <- spark_connect(master = "local", version = version, config = config)
-    assign(".testthat_spark_connection", sc, envir = .GlobalEnv)
+    assign(".test_spark_connection", sc, envir = .GlobalEnv)
   }
 
   # retrieve spark connection
-  get(".testthat_spark_connection", envir = .GlobalEnv)
+  get(".test_spark_connection", envir = .GlobalEnv)
 }
 
 

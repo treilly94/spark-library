@@ -1,6 +1,6 @@
 context("Testing Sum Column Using BDD")
 
-sc <- testthat_spark_connection()
+sc <- test_spark_connection()
 
 describe("", {
   it("", {
