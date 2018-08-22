@@ -1,3 +1,4 @@
+library(rprojroot)
 library(testthat)
 library(sparkLibrary)
 
