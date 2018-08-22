@@ -2,8 +2,8 @@ context("Testing Sum Column Using BDD")
 
 sc <- test_spark_connection()
 
-describe("", {
-  it("", {
+describe(" ", {
+  it(" ", {
     input_data <- read_in_data(file.path(PROJHOME, "../resources/input/sum_columns.json"), sc, name= "sum_col_input_data")
 
     expected<- read_in_data(file.path(PROJHOME, "../resources/expected/sum_columns.json"), sc, name= "sum_col_expected_data") %>%
