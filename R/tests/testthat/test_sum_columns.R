@@ -16,7 +16,7 @@ describe("", {
       dplyr::select() %>%
       dplyr::arrange()
 
-    comparing_data(actual_data, expected_data)
+    comparing_data("sumtest1", actual_data, expected_data)
 
     })
   })
