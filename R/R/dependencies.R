@@ -11,7 +11,7 @@ spark_dependecies <- function(spark_version, scala_version, ...){
 
 }
 
-#' @import sparkylr
+#' @import sparklyr
 .onload <- function(libname, pkgname) {
   sparklyr::register_extension(pkgname)
 }
