@@ -7,7 +7,8 @@ Maintainer: Joe Developer <Joe.Developer@some.domain.net>
 Description: This package is used for calling Scala methods from the spark-library package, turns them into R methods to allow them to be used within R.
 Depends:
       R (>= 3.4.1),
-      sparklyr (>= 0.7.0)
+      sparklyr (>= 0.7.0),
+      here
 Imports:
       dplyr
 License: MIT LICENSE

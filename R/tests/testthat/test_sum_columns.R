@@ -6,7 +6,7 @@ describe("That two columns are taken in and summed", {
   it("two integers columns", {
     input_data <- read_in_data(file.path(here("../resources/input/sum_columns.json")), sc, name= "sum_col_input_data")
 
-    expected<- read_in_data(file.path(here("../resources/expected/sum_columns.json"))s, sc, name= "sum_col_expected_data") %>%
+    expected<- read_in_data(file.path(here("../resources/expected/sum_columns.json")), sc, name= "sum_col_expected_data") %>%
       dplyr::collect() %>%
       dplyr::select() %>%
       dplyr::arrange()
