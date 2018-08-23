@@ -33,6 +33,7 @@ jobs:
       r_packages:
         - sparklyr
         - dplyr
+        - here
       before_script: cd ..
       script:
         - ./scripts/scala_package.sh
