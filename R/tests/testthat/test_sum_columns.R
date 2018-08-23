@@ -11,7 +11,7 @@ describe("That two columns are taken in and summed", {
       dplyr::select() %>%
       dplyr::arrange()
 
-    actual_data <- sum_columns(sc =sc, input_data, column_1, column_2, new_column) %>%
+    actual_data <- sum_columns(sc=sc, input_data, "col1", "col2", "sum") %>%
       dplyr::collect() %>%
       dplyr::select() %>%
       dplyr::arrange()
